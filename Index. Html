@@ -1,0 +1,268 @@
+
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>مسارك | التوجيه المهني</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: #f2f6fc;
+      color: #1e293b;
+      line-height: 1.8;
+    }
+
+    header {
+      background: #123b70;
+      color: white;
+      padding: 22px 15px;
+      text-align: center;
+    }
+
+    header h1 {
+      margin: 0;
+      font-size: 32px;
+    }
+
+    nav {
+      background: #0d2c52;
+      padding: 12px;
+      text-align: center;
+    }
+
+    nav a {
+      color: white;
+      text-decoration: none;
+      margin: 0 10px;
+    }
+
+    .container {
+      max-width: 750px;
+      margin: 25px auto;
+      padding: 0 15px;
+    }
+
+    .card {
+      background: white;
+      padding: 22px;
+      margin-bottom: 20px;
+      border-radius: 14px;
+      box-shadow: 0 4px 15px #0000000d;
+    }
+
+    h2 {
+      color: #123b70;
+    }
+
+    .option {
+      display: block;
+      background: #f4f7fb;
+      padding: 12px;
+      margin: 10px 0;
+      border-radius: 8px;
+      cursor: pointer;
+    }
+
+    .option input {
+      margin-left: 8px;
+    }
+
+    input[type="text"],
+    input[type="email"],
+    input[type="password"] {
+      width: 100%;
+      padding: 12px;
+      margin: 8px 0;
+      border: 1px solid #ccd5e0;
+      border-radius: 8px;
+      font-size: 16px;
+    }
+
+    button {
+      background: #1769d2;
+      color: white;
+      border: none;
+      padding: 12px 20px;
+      border-radius: 8px;
+      font-size: 16px;
+      cursor: pointer;
+      margin-top: 10px;
+    }
+
+    button:hover {
+      background: #0d4fa8;
+    }
+
+    #result {
+      display: none;
+      border-right: 5px solid #1769d2;
+      background: #e8f2ff;
+      padding: 18px;
+      margin-top: 20px;
+      border-radius: 8px;
+    }
+
+    footer {
+      text-align: center;
+      padding: 20px;
+      background: #123b70;
+      color: white;
+    }
+  </style>
+</head>
+
+<body>
+
+  <header>
+    <h1>مسارك</h1>
+    <p>اكتشف ميولك، وحدد طريقك المهني</p>
+  </header>
+
+  <nav>
+    <a href="#about">عن الموقع</a>
+    <a href="#test">اختبار الميول</a>
+  </nav>
+
+  <main class="container">
+
+    <section class="card" id="about">
+      <h2>أهلاً بيك في مسارك 👋</h2>
+      <p>
+        محتار تختار مجال شغل إيه؟
+        جاوب عن الأسئلة التالية واكتشف مجالات مهنية
+        ممكن تناسب اهتماماتك.
+      </p>
+    </section>
+
+    <section class="card" id="test">
+      <h2>اختبار الميول المهنية</h2>
+
+      <form id="careerForm">
+
+        <p><strong>1. إيه المجال اللي بتحبه أكتر؟</strong></p>
+
+        <label class="option">
+          <input type="radio" name="interest"
+            value="tech" required>
+          التكنولوجيا والبرمجة
+        </label>
+
+        <label class="option">
+          <input type="radio" name="interest" value="design">
+          التصميم والرسم والإبداع
+        </label>
+
+        <label class="option">
+          <input type="radio" name="interest" value="business">
+          التجارة وإدارة المشروعات
+        </label>
+
+        <label class="option">
+          <input type="radio" name="interest" value="people">
+          مساعدة الناس والتواصل معاهم
+        </label>
+
+        <p><strong>2. بتحب تشتغل إزاي؟</strong></p>
+
+        <label class="option">
+          <input type="radio" name="activity"
+            value="problems" required>
+          أحل المشكلات وأفكر بالمنطق
+        </label>
+
+        <label class="option">
+          <input type="radio" name="activity"
+            value="creative">
+          أبتكر أفكار وأصمم حاجات جديدة
+        </label>
+
+        <label class="option">
+          <input type="radio" name="activity"
+            value="manage">
+          أنظم الشغل وأخطط للمشروعات
+        </label>
+
+        <label class="option">
+          <input type="radio" name="activity"
+            value="communicate">
+          أتعامل مع الناس وأساعدهم
+        </label>
+
+        <button type="submit">اعرف مجالك المناسب</button>
+
+      </form>
+
+      <div id="result" aria-live="polite"></div>
+    </section>
+
+  </main>
+
+  <footer>
+    <p>مسارك © 2026 - مستقبلك يبدأ بخطوة</p>
+  </footer>
+
+  <script>
+    const form = document.getElementById("careerForm");
+    const result = document.getElementById("result");
+
+    const careers = {
+      tech: {
+        title: "تطوير الويب والبرمجة",
+        description:
+          "ابدأ بتعلم HTML وCSS وJavaScript، ثم انتقل إلى البرمجة المتقدمة."
+      },
+      design: {
+        title: "التصميم الجرافيكي",
+        description:
+          "ابدأ بأساسيات الألوان والتصميم، وتدرب على أدوات التصميم."
+      },
+      business: {
+        title: "إدارة الأعمال والتسويق",
+        description:
+          "تعلم التسويق الرقمي وإدارة المشروعات وتحليل احتياجات العملاء."
+      },
+      people: {
+        title: "الموارد البشرية والإرشاد",
+        description:
+          "طور مهارات التواصل والاستماع والتنظيم والتعامل مع الآخرين."
+      }
+    };
+
+    form.addEventListener("submit", function(event) {
+      event.preventDefault();
+
+      const interest =
+        form.querySelector('input[name="interest"]:checked').value;
+
+      const activity =
+        form.querySelector('input[name="activity"]:checked').value;
+
+      const career = careers[interest];
+
+      result.style.display = "block";
+
+      result.innerHTML = `
+        <h2>نتيجتك المهنية 🎯</h2>
+        <p>المجال المقترح ليك: <strong>${career.title}</strong></p>
+        <p>${career.description}</p>
+        <p><small>
+          دي نتيجة استرشادية أولية وليست تقييماً مهنياً معتمداً.
+        </small></p>
+      `;
+
+      result.scrollIntoView({
+        behavior: "smooth",
+        block: "center"
+      });
+    });
+  </script>
+
+</body>
+</html>
